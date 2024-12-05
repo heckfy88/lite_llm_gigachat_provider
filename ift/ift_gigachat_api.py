@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 import os
 
 def load_config():
-    with open("config_gigachat.yaml", 'r') as file:
+    with open("ift_config_gigachat.yaml", 'r') as file:
         return yaml.safe_load(file)
 
 # Загрузка переменных окружения
