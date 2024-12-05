@@ -1,0 +1,17 @@
+python_filename: custom_gigachat_api.py
+custom_handler_instance_name: gigachat_custom_llm
+custom_handler: custom_gigachat_api.gigachat_custom_llm
+
+gigachat_settings:
+  base_url: "<IFT_URL>"
+  verify_ssl: false
+  scope: "GIGACHAT_API_PERS"
+
+model_list:
+  - model_name: "gigachat-custom-model"
+    litellm_params:
+      model: "gigachat-custom-llm/gigachat-model"
+
+litellm_settings:
+  custom_provider_map:
+    - {"provider": "gigachat-custom-llm", "custom_handler": ift_gigachat_api.gigachat_custom_llm}
