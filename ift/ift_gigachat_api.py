@@ -61,7 +61,7 @@ class GigaChatCustomLLM(CustomLLM):
 
         return litellm.ModelResponse(
             created=gigachat_response.get("created", 0),
-            model=gigachat_response.get("model", "GigaChat"),
+            model=gigachat_response.get("model", MODEL),
             choices=choices
         )
 
