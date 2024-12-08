@@ -25,6 +25,7 @@ AUTH_URL = gigachat_config.get('auth_url')
 BASE_URL = gigachat_config.get('base_url')
 VERIFY_SSL = gigachat_config.get('verify_ssl', False)
 SCOPE = gigachat_config.get('scope', 'GIGACHAT_API_PERS')
+MODEL = gigachat_config.get('model', 'GigaChat-Max')
 
 # Обновление конфигурации с учетом переменных окружения
 CRED64 = os.getenv('GIGACHAT_CREDENTIALS', gigachat_config.get('credentials'))
@@ -68,7 +69,7 @@ class GigaChatCustomLLM(CustomLLM):
         messages = kwargs.get("messages", [{"role": "user", "content": "Hello world"}])
 
         gigachat_payload = {
-            'model': 'GigaChat',
+            'model': MODEL,
             'messages': messages,
             'profanity_check': True,
         }

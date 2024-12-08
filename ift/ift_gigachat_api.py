@@ -24,6 +24,7 @@ gigachat_config = config.get('gigachat_settings', {})
 BASE_URL = gigachat_config.get('base_url')
 VERIFY_SSL = gigachat_config.get('verify_ssl', False)
 SCOPE = gigachat_config.get('scope', 'GIGACHAT_API_PERS')
+MODEL = gigachat_config.get('model', 'GigaChat-Max')
 
 class GigaChatCustomLLM(CustomLLM):
     def __init__(self):
@@ -35,7 +36,7 @@ class GigaChatCustomLLM(CustomLLM):
         messages = kwargs.get("messages", [{"role": "user", "content": "Hello world"}])
 
         gigachat_payload = {
-            'model': 'GigaChat',
+            'model': MODEL,
             'messages': messages,
             'profanity_check': True,
         }

@@ -6,6 +6,7 @@ gigachat_settings:
   base_url: "<IFT_URL>"
   verify_ssl: false
   scope: "GIGACHAT_API_PERS"
+  model: "GigaChat-Max"
 
 model_list:
   - model_name: "gigachat-custom-model"
