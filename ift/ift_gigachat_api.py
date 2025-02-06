@@ -25,25 +25,36 @@ BASE_URL = gigachat_config.get('base_url')
 VERIFY_SSL = gigachat_config.get('verify_ssl', False)
 SCOPE = gigachat_config.get('scope', 'GIGACHAT_API_PERS')
 
+CRED64 = os.getenv('GIGACHAT_CREDENTIALS', gigachat_config.get('credentials'))
+
 class GigaChatCustomLLM(CustomLLM):
     def __init__(self):
         super().__init__()
         self.config = load_config()
         self.gigachat_config = self.config.get('gigachat_settings', {})
 
+
     def completion(self, *args, **kwargs) -> litellm.ModelResponse:
+
+        headers = {
+            'Content-Type': 'application/json',
+            'X-API-KEY': CRED64
+        }
+
         messages = kwargs.get("messages", [{"role": "user", "content": "Hello world"}])
 
         gigachat_payload = {
-            'model': 'GigaChat',
+            'model': 'СhatCode',
             'messages': messages,
             'profanity_check': True,
         }
 
         response = requests.post(
-            f'{BASE_URL}',
+            f'{BASE_URL}/gigacode',
             json=gigachat_payload,
-            verify=VERIFY_SSL
+            verify=VERIFY_SSL,
+            headers=headers
+
         )
         response.raise_for_status()
 
